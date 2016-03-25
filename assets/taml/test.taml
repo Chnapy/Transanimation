@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transanimation_data taml_version="1.0">
+
+	<element name="bg0" class="background" img="assets/graphics/bg/bg0.jpg" />
+	<element name="mcman" class="speakanimable" scml="assets/test/test.scml" x="50" y="910" withbottom="1" cx="60" cy="120" cw="120" ch="180" />
+	
+	<action_data name="test" forelement="mcman" >
+		<action class="speakPause" d="3000" />
+		<action class="pause" d="1000" />
+		<action class="move" x="1320" y="0" ipt="ease_both" d="2000" />
+		<action class="flip" />
+		<action class="speak" ipt="linear" d="3000">
+			Moonwalk
+		</action>
+		<action class="speak" ipt="linear" d="2000">
+			B)
+		</action>
+		<action class="move" x="960" y="0" ipt="linear" d="5000" />
+		<action class="flip" />
+		<action class="speakPause" d="2300" />
+		<action class="move" x="400" y="0" ipt="ease_out" d="2500" />
+		<action class="speak" ipt="linear" d="1500">
+			Des petits sauts...
+		</action>
+		<action class="flip" />
+		<action class="move" x="-50" y="-40" ipt="linear" d="250" />
+		<action class="move" x="-50" y="40" ipt="linear" d="200" />
+		<action class="move" x="-50" y="-40" ipt="linear" d="250" />
+		<action class="move" x="-50" y="40" ipt="linear" d="200" />
+		<action class="pause" d="2000" />
+		<action class="speakPause" d="200" />
+		<action class="speak" ipt="linear" d="1400">
+			Téléportation dans...
+		</action>
+		<action class="speak" ipt="linear" d="1000">
+			3
+		</action>
+		<action class="speak" ipt="linear" d="1000">
+			2
+		</action>
+		<action class="speak" ipt="linear" d="1000">
+			1
+		</action>
+		<action class="move" x="800" y="0" ipt="discrete" d="3000" />
+		<action class="speakPause" d="500" />
+		<action class="speak" ipt="linear" d="1000">
+			:3
+		</action>
+		<action class="speakPause" d="1000" />
+		<action class="speak" ipt="linear" d="2000">
+			Ca tape un sprint !
+		</action>
+		<action class="pause" d="4500" />
+		<action class="move" x="-3200" y="0" ipt="ease_both" d="3000" />
+		<action class="pause" d="1000" />
+		<action class="flip" />
+		<action class="speakPause" d="6000" />
+		<action class="custom"/>
+		<action class="speak" ipt="linear" d="20000">
+			Fin
+		</action>
+		
+	</action_data>
+	
+</transanimation_data>
