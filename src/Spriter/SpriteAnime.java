@@ -24,26 +24,24 @@ import com.brashmonkey.spriter.Player;
 import com.brashmonkey.spriter.SCMLReader;
 import com.brashmonkey.spriter.Timeline.Key.Object;
 import java.util.logging.Level;
-import javafx.scene.effect.Effect;
 
 public class SpriteAnime {
 
 	// spriter objects
-	private final Canvas gameCanvas;
+	private final Canvas canvas;
 	public Player player;
 	private ImageDrawer drawer;
+	private Data data;
 	private Loader<Image> loader;
-	private final Effect effect;
 
-	public SpriteAnime(String SCMLpath, Canvas gameCanvas, float x, float y, Effect effect) {
-		this.gameCanvas = gameCanvas;
-		this.effect = effect;
+	public SpriteAnime(String SCMLpath, Canvas canvas, float x, float y) {
+		this.canvas = canvas;
 		int index = SCMLpath.lastIndexOf("/") + 1;
 		String fileName = SCMLpath.substring(index);
 		SCMLpath = SCMLpath.substring(0, index);
 
 		initialize(SCMLpath, fileName);
-
+		
 		player.setPosition(x, y);
 	}
 
@@ -58,6 +56,14 @@ public class SpriteAnime {
 			drawer.drawBoxes(player);
 		}
 	}
+	
+	public void setAnimation(String name) {
+		player.setAnimation(name);
+	}
+	
+	public void setSpeed(int speed) {
+		player.speed = speed;
+	}
 
 	private void initialize(String folderPath, String fileName) {
 		String xmlSCML = null;
@@ -66,18 +72,18 @@ public class SpriteAnime {
 		} catch (IOException ex) {
 			Logger.getLogger(SpriteAnime.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		Data data = new SCMLReader(xmlSCML).getData();
+		data = new SCMLReader(xmlSCML).getData();
 		player = new Player(data.getEntity(0));
-		this.loader = new Loader<Image>(data) {
+		loader = new Loader<Image>(data) {
 
 			@Override
 			protected Image loadResource(FileReference ref) {
 				return new Image("file:" + super.root + "/" + data.getFile(ref).name);
 			}
 		};
-		this.loader.load(folderPath);
+		loader.load(folderPath);
 
-		drawer = new ImageDrawer(loader, gameCanvas, effect);
+		drawer = new ImageDrawer(loader, canvas);
 	}
 
 	private class ImageDrawer extends Drawer<Image> {
@@ -85,11 +91,10 @@ public class SpriteAnime {
 		Canvas can;
 		GraphicsContext gc;
 
-		public ImageDrawer(Loader<Image> loader, Canvas can, Effect effect) {
+		public ImageDrawer(Loader<Image> loader, Canvas can) {
 			super(loader);
 			this.can = can;
 			gc = can.getGraphicsContext2D();
-			gc.setEffect(effect);
 		}
 
 		@Override

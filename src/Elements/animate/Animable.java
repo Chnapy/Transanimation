@@ -7,10 +7,10 @@ package Elements.animate;
 
 import Elements.Element;
 import Spriter.SpriteAnime;
+import com.brashmonkey.spriter.Player;
 import javafx.animation.SequentialTransition;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.effect.Effect;
 
 /**
  * Animable.java
@@ -23,16 +23,12 @@ public class Animable extends Group implements Element {
 	public final Canvas canvas;
 	public final SpriteAnime sprite;
 	private final SequentialTransition sTransition;
-	
-	public Animable(String SCMLpath, float x, float y, double width, double height) {
-		this(SCMLpath, x, y, width, height, null);
-	}
 
-	public Animable(String SCMLpath, float x, float y, double width, double height, Effect effect) {
+	public Animable(String SCMLpath, float x, float y, double width, double height) {
 		canvas = new Canvas(width, height);
 		getChildren().add(canvas);
 		getStyleClass().add(this.getClass().getSimpleName().toLowerCase());
-		this.sprite = new SpriteAnime(SCMLpath, canvas, x, y, effect);
+		this.sprite = new SpriteAnime(SCMLpath, canvas, x, y);
 
 		sTransition = new SequentialTransition(this);
 	}
@@ -48,6 +44,8 @@ public class Animable extends Group implements Element {
 
 	public void update() {
 		sprite.update();
+		
+		updateBones(sprite.player);
 
 		canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
@@ -56,6 +54,9 @@ public class Animable extends Group implements Element {
 		if(DEBUG) {
 			canvas.getGraphicsContext2D().strokeRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		}
+	}
+	
+	protected void updateBones(Player player) {
 	}
 
 	@Override

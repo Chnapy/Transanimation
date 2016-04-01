@@ -9,7 +9,6 @@ import Elements.actions.Action;
 import Elements.actions.SpeakAction;
 import Elements.actions.SpeakPauseAction;
 import Elements.speakable.Speaker;
-import javafx.scene.effect.Effect;
 
 /**
  * SpeakAnimable.java
@@ -20,11 +19,7 @@ public class SpeakAnimable extends Animable {
 	public final Speaker speaker;
 
 	public SpeakAnimable(String SCMLpath, float x, float y, double width, double height) {
-		this(SCMLpath, x, y, width, height, null);
-	}
-
-	public SpeakAnimable(String SCMLpath, float x, float y, double width, double height, Effect effect) {
-		super(SCMLpath, x, y, width, height, effect);
+		super(SCMLpath, x, y, width, height);
 		speaker = new Speaker();
 		getChildren().add(speaker);
 	}

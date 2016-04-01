@@ -45,43 +45,46 @@ public class Main extends Application {
 		CameraBox camera = moteur.getCamera();
 
 		//Création, puis ajout des éléments au moteur
-//		Background bg0 = new Background("assets/graphics/bg/bg0.jpg");
-//		moteur.addElements(bg0);
+		Background bg0 = new Background("assets/graphics/bg/bg0.jpg");
+		moteur.addElements(bg0);
 
-//		SpeakAnimable animeSprite = new SpeakAnimable("assets/test/test.scml", 60, 120, 120, 180);
-//		moteur.addElements(animeSprite);
+		MineSprite animeSprite = new MineSprite();
+		moteur.addElements(animeSprite);
 
 		//Positionnement initial
-//		animeSprite.setPosition(50, 910, true);
+		animeSprite.setPosition(50, 910, true);
 		camera.setPosition(0, 0);
 
+		animeSprite.sprite.setAnimation("Walk");
+//		animeSprite.sprite.setSpeed(100);
+		
 		//Récupération TAML
-		try {
-			//Initialisation du module TAML
-			TAML.init();
-
-			//Récupération des éléments
-			HashMap<String, Pair<Elements.Element, ArrayList<Integer>>> TAMLret = TAML.getElementsFromTAML("assets/taml/test.taml");
-			
-			//Ajout des actions custom
-			TAMLret.get("mcman").getValue().forEach((i) -> {
-				switch (i) {
-					case 0:
-						TAMLret.get("mcman").getKey().addAction(new CustomAction(new CustomTransition(Duration.millis(3000)), Interpolator.LINEAR), i);
-						break;
-				}
-			});
-			
-			//Ajouts des éléments au moteur
-			TAMLret.values().forEach((p) -> {
-				moteur.addElements(p.getKey());
-			});
-		} catch (IOException | SAXException ex) {
-			throw new Error("Fichier .taml introuvable");
-		}
+//		try {
+//			//Initialisation du module TAML
+//			TAML.init();
+//
+//			//Récupération des éléments
+//			HashMap<String, Pair<Elements.Element, ArrayList<Integer>>> TAMLret = TAML.getElementsFromTAML("assets/taml/test.taml");
+//			
+//			//Ajout des actions custom
+//			TAMLret.get("mcman").getValue().forEach((i) -> {
+//				switch (i) {
+//					case 0:
+//						TAMLret.get("mcman").getKey().addAction(new CustomAction(new CustomTransition(Duration.millis(3000)), Interpolator.LINEAR), i);
+//						break;
+//				}
+//			});
+//			
+//			//Ajouts des éléments au moteur
+//			TAMLret.values().forEach((p) -> {
+//				moteur.addElements(p.getKey());
+//			});
+//		} catch (IOException | SAXException ex) {
+//			throw new Error("Fichier .taml introuvable");
+//		}
 
 		//Ajout des actions
-		/*animeSprite
+		animeSprite
 		 .speakPause(3000)
 		 .pause(1000)
 		 .move(1320, 0, Interpolator.EASE_BOTH, 2000)
@@ -115,7 +118,7 @@ public class Main extends Application {
 		 .flip()
 		 .speakPause(6000)
 		 .custom(new CustomTransition(Duration.millis(3000)), Interpolator.LINEAR)
-		 .speak("Fin", Interpolator.LINEAR, 20000);*/
+		 .speak("Fin", Interpolator.LINEAR, 20000);
 		camera
 				.pause(1200)
 				.move(840, 0, Interpolator.EASE_BOTH, 2000)
